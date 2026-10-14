@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mathe-Übung: Funktionen</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--tx:#1d2433;--mu:#5d667a;--ac:#2f6df6;--ok:#1a9a52;--no:#d83a3a;--bd:#dde1ea;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12161f;--card:#1b2130;--tx:#e8ebf2;--mu:#9aa3b8;--ac:#6c9bff;--ok:#43c47c;--no:#ff6b6b;--bd:#2c3447;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#12161f;--card:#1b2130;--tx:#e8ebf2;--mu:#9aa3b8;--ac:#6c9bff;--ok:#43c47c;--no:#ff6b6b;--bd:#2c3447;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:720px;margin:0 auto;padding:16px}
+h1{font-size:1.5rem;margin:8px 0 4px}
+.sub{color:var(--mu);margin:0 0 14px}
+nav{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}
+nav button{flex:none;border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:8px 12px;border-radius:999px;font:inherit;cursor:pointer}
+nav button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;margin:12px 0}
+.card h2{font-size:1.1rem;margin:0 0 6px}
+.vid{display:inline-block;margin-top:6px;padding:8px 12px;border-radius:10px;background:#e62117;color:#fff;text-decoration:none;font-weight:600}
+.q{border-top:1px solid var(--bd);padding:12px 0}
+.q:first-of-type{border-top:0}
+.q p{margin:0 0 8px;font-weight:600}
+.opts{display:flex;flex-direction:column;gap:6px}
+.opts button,.chk{border:1px solid var(--bd);background:var(--bg);color:var(--tx);padding:9px 12px;border-radius:10px;font:inherit;text-align:left;cursor:pointer}
+.opts button.ok,.q.ok .chk{border-color:var(--ok)}
+.opts button.no{border-color:var(--no)}
+.opts button.sel{border-color:var(--ac);background:var(--card);font-weight:600}
+.res{font-size:1.1rem;font-weight:600;margin-top:10px}
+.vt{font-weight:600;margin-top:14px}
+.vf{position:relative;padding-top:56.25%;margin:6px 0 2px;border-radius:10px;overflow:hidden;background:#000}
+.vf iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vc{display:flex;align-items:center;gap:10px;margin-top:10px;padding:10px 12px;border:1px solid var(--bd);border-radius:12px;background:var(--bg);color:var(--tx);text-decoration:none}
+.vc .pl{flex:none;width:36px;height:36px;border-radius:50%;background:#e62117;color:#fff;display:grid;place-items:center}
+.vc .vt{margin:0}
+.tw{overflow-x:auto;margin:6px 0 10px}
+.tb{border-collapse:separate;border-spacing:0;width:100%;border:1px solid var(--bd);border-radius:12px;overflow:hidden;font-variant-numeric:tabular-nums}
+.tb td{padding:10px 12px;text-align:center;border-top:1px solid var(--bd);border-left:1px solid var(--bd)}
+.tb tr:first-child td{border-top:0;background:var(--bg)}
+.tb td.th{text-align:left;font-weight:600;background:var(--bg);border-left:0;white-space:nowrap}
+.tb tr:first-child td:not(.th){font-weight:600;color:var(--ac)}
+.tb{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.tb td{font-weight:600;font-size:1.05rem}
+.tb td.th{text-transform:uppercase;font-size:.78rem;letter-spacing:.06em;color:var(--mu)}
+.tb td.up{color:var(--ok)}
+.tb td.dn{color:var(--no)}
+.ex{background:var(--bg);border:1px solid var(--bd);border-left:4px solid var(--ac);border-radius:10px;padding:8px 12px;margin:0 0 10px;font-size:.95rem}
+.ex summary{cursor:pointer;font-weight:600;color:var(--ac)}
+.ex div{margin-top:6px}
+input[type=text]{width:110px;padding:8px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx);font:inherit}
+.chk{display:inline-block;margin-left:6px;background:var(--ac);color:#fff;border-color:var(--ac);text-align:center}
+.fb{margin-top:6px;font-size:.95rem;min-height:1.2em}
+.fb.ok{color:var(--ok)}.fb.no{color:var(--no)}
+.score{position:sticky;top:env(safe-area-inset-top,0px);z-index:2;background:var(--bg);padding:6px 0;color:var(--mu);font-size:.95rem}
+svg{width:100%;height:auto;max-width:340px;display:block;margin:6px auto;background:var(--bg);border:1px solid var(--bd);border-radius:10px}
+.sl{display:flex;align-items:center;gap:8px;margin:4px 0}.sl input{flex:1}
+.sl span{width:92px;font-variant-numeric:tabular-nums}
+</style>
+</head>
+<body>
+<main>
+<h1>Mathe-Übung: Funktionen</h1>
+<p class="sub">Wähle ein Thema, schau das Video und löse die Aufgaben.</p>
+<nav id="nav"></nav>
+<div class="score" id="score"></div>
+<div id="view"></div>
+</main>
+<script>
+var T=[
+{id:"fe",n:"Funktionen erkennen",vid:"Lehrer Schmidt Funktionen erkennen und darstellen",v:[["Koordinatensystem - Punkt einzeichnen","or1XaVqYL_4"],["Lineare Funktion - Wertetabelle erstellen","dLfPBJgHgC4"]],
+ txt:"Eine Funktion ordnet jedem x-Wert genau einen y-Wert zu. Darstellen kannst du sie als Wertetabelle, Graph oder Funktionsgleichung (z. B. f(x) = 3x − 2).",
+ q:[
+ {t:"Welche Zuordnung ist eine Funktion?",ptss:[{xl:"x",yl:"A: y",p:[[1,2],[1,3],[2,4]]},{xl:"x",yl:"B: y",p:[[1,2],[2,3],[3,3]]},{xl:"x",yl:"C: y",p:[[2,1],[2,5],[2,9]]}],o:["A","B","C"],a:1,h:"B ist eine Funktion: Über jedem x-Wert (1, 2, 3) steht nur ein Kreuz. Dass y = 3 zweimal vorkommt, ist erlaubt. In A hat x = 1 zwei y-Werte, in C hat x = 2 drei y-Werte."},
+ {t:"f(x) = 3x − 2. Berechne f(4).",eq:[3,-2],a:10},
+ {t:"f(x) = 2x + 1. Welcher y-Wert gehört zu x = −1?",eq:[2,1],a:-1},
+ {t:"Wie lautet die Gleichung zur Wertetabelle?",tb:[["x","0","1","2","3"],["y","1","3","5","7"]],o:["y = x + 1","y = 2x + 1","y = 3x + 1"],a:1,h:"Bei x = 0 ist y = 1, und y wächst pro Schritt um 2."},
+ {t:"Welcher x-Wert gehört zu y = 7 bei f(x) = 2x + 1?",eq:[2,1],a:3,h:"7 = 2x + 1, also 2x = 6."},
+ {t:"Welche Aussage stimmt? Eine Funktion …",o:["darf einem x zwei y-Werte geben","gibt jedem x genau einen y-Wert","hat immer eine Gerade als Graph"],a:1},
+ {t:"Ist diese Zuordnung eine Funktion?",tb:[["x","1","2","2","3"],["y","4","5","6","7"]],o:["Ja","Nein, weil x = 2 zwei verschiedene y-Werte hat"],a:1},
+ {t:"Was für eine Zuordnung ist das?",tb:[["Arbeiter","1","2","4","8"],["Dauer in Tagen","50","25","12,5","6,25"]],o:["proportional (doppelt so viele Arbeiter, doppelt so viele Tage)","umgekehrt proportional (doppelt so viele Arbeiter, halb so viele Tage)","keine Zuordnung"],a:1,h:"Arbeiter × Tage ergibt immer 50."},
+ {t:"Wie viele Tage brauchen 5 Arbeiter?",tb:[["Arbeiter","1","2","4","8"],["Dauer in Tagen","50","25","12,5","6,25"]],a:10,h:"Arbeiter × Tage = 50, also 50 ÷ 5."},
+ {t:"Wie viele Arbeiter braucht man, damit es nur 2 Tage dauert?",tb:[["Arbeiter","1","2","4","8"],["Dauer in Tagen","50","25","12,5","6,25"]],a:25,h:"50 ÷ 2"},
+ {t:"Fülle die Wertetabelle aus: f(x) = 2x − 1",fill:{x:[-2,-1,0,1,2],m:2,b:-1},h:"Setze jeden x-Wert in 2x − 1 ein. Bei x = −2 ist es 2 · (−2) − 1."},
+ {t:"Fülle die Wertetabelle aus: f(x) = −x + 3",fill:{x:[-1,0,1,2,3],m:-1,b:3},h:"Setze jeden x-Wert in −x + 3 ein."},
+ {t:"Jedem Tag wird die Mittagstemperatur zugeordnet. Ist das eine Funktion?",tb:[["Tag","1.","2.","3.","4."],["Temperatur in °C","4","6","6","9"]],pts:{xl:"Tag",yl:"Temperatur (°C)",p:[[1,4],[2,6],[3,6],[4,9]]},o:["Ja, jedem Tag gehört genau eine Temperatur","Nein, zwei Tage haben die gleiche Temperatur"],a:0,h:"Entscheidend ist, dass jedem Tag (x) genau ein Wert (y) gehört. Gleiche Temperaturen an zwei Tagen sind erlaubt."},
+ {t:"Jeder Temperatur wird ein Tag zugeordnet. Ist das eine Funktion?",tb:[["Temperatur in °C","4","6","6","9"],["Tag","1","2","3","4"]],pts:{xl:"Temperatur (°C)",yl:"Tag",p:[[4,1],[6,2],[6,3],[9,4]]},o:["Ja","Nein, der Temperatur 6 °C gehören zwei Tage (2 und 3)"],a:1,h:"In der oberen Zeile (x) steht zweimal die 6, mit zwei verschiedenen y-Werten."},
+ {t:"Lies im Diagramm ab: Welche Temperatur gehört zum 3. Tag?",pts:{xl:"Tag",yl:"Temperatur (°C)",p:[[1,4],[2,6],[3,6],[4,9]]},a:6,h:"Gehe bei 3 nach oben bis zum Kreuz und lies links die Temperatur ab."}]},
+{id:"st",n:"Steigung von Geraden",vid:"Lehrer Schmidt Steigung von Geraden Steigungsdreieck",plot:1,v:[["Steigungsdreieck bei einer linearen Funktion","fN52WXY_72g"],["Lineare Funktion - aus zwei Punkten berechnen (und zeichnen)","w4l1uk5qVGE"]],
+ txt:"Die Steigung m sagt, wie steil eine Gerade ist: m = Δy ÷ Δx (Höhenunterschied durch Schritt nach rechts). Positiv = steigt, negativ = fällt, 0 = waagerecht.",
+ q:[
+ {t:"Die beiden Punkte liegen auf einer Geraden. Wie groß ist m?",tb:[["x","1","3"],["y","2","8"]],a:3,h:"m = (8 − 2) ÷ (3 − 1) = 6 ÷ 2"},
+ {t:"Die beiden Punkte liegen auf einer Geraden. Wie groß ist m?",tb:[["x","0","4"],["y","5","1"]],a:-1,h:"m = (1 − 5) ÷ (4 − 0) = −4 ÷ 4"},
+ {t:"Steigungsdreieck: 2 Schritte nach rechts, 1 nach oben. Wie groß ist m? (als Dezimalzahl)",a:0.5},
+ {t:"Eine waagerechte Gerade hat die Steigung …",o:["0","1","nicht definiert"],a:0,h:"Es gibt keinen Höhenunterschied, also Δy = 0."},
+ {t:"Die beiden Punkte liegen auf einer Geraden. Wie groß ist m?",tb:[["x","−2","2"],["y","1","5"]],a:1,h:"m = (5 − 1) ÷ (2 − (−2)) = 4 ÷ 4"},
+ {t:"Eine Gerade fällt von links oben nach rechts unten. Die Steigung ist …",o:["positiv","negativ","null"],a:1}]},
+{id:"pr",n:"Proportionale Funktionen",vid:"Lehrer Schmidt Proportionale Funktionen",plot:2,v:[["Proportionale Zuordnung","MT3hVo_BfT0"]],
+ txt:"Proportionale Funktionen haben die Form y = m · x. Der Graph ist eine Gerade durch den Ursprung (0|0). Der Faktor m ist der Proportionalitätsfaktor, also das Verhältnis y ÷ x.",
+ q:[
+ {t:"Welche Funktion ist proportional?",o:["y = 2x + 1","y = 2x","y = x²"],a:1,h:"Proportional heißt: y = m · x, ohne Zusatz."},
+ {t:"Was kosten 5 kg Äpfel?",tb:[["Gewicht in kg","3","5"],["Preis in €","6","?"]],a:10,h:"1 kg kostet 2 €, also 5 · 2."},
+ {t:"Das ist eine proportionale Funktion. Wie groß ist m?",tb:[["x","4"],["y","12"]],a:3},
+ {t:"Der Graph einer proportionalen Funktion geht immer durch …",o:["den Punkt (0|1)","den Ursprung (0|0)","den Punkt (1|0)"],a:1},
+ {t:"y = 4x. Berechne y für x = 2,5.",eq:[4,0],a:10},
+ {t:"Ist diese Zuordnung proportional?",tb:[["x","2","4"],["y","5","10"]],o:["Ja, m = 2,5","Nein","Ja, m = 2"],a:0,h:"y ÷ x ist immer 5 ÷ 2 = 2,5."},
+ {t:"Fülle die Wertetabelle aus: y = 3x",fill:{x:[-2,0,1,2,4],m:3,b:0},h:"Multipliziere jeden x-Wert mit 3."}]},
+{id:"li",n:"Lineare Funktionen",vid:"Lehrer Schmidt Lineare Funktionen",plot:3,v:[["Lineare Funktion im Koordinatensystem zeichnen","tBhQwSmrAZc"],["Lineare Funktion ablesen","GhhSqXn3cqw"],["Lineare Funktion - Nullstelle berechnen","gbAx4WzT0pI"]],
+ txt:"Lineare Funktionen haben die Form y = m · x + b. m ist die Steigung, b der y-Achsenabschnitt (hier schneidet der Graph die y-Achse). Die Nullstelle findest du, indem du y = 0 setzt.",
+ q:[
+ {t:"Wie groß ist der y-Achsenabschnitt von y = 2x − 3?",eq:[2,-3],a:-3},
+ {t:"Eine Gerade geht durch (0|1) und hat m = 2. Wie lautet die Gleichung?",o:["y = x + 2","y = 2x + 1","y = 2x − 1"],a:1},
+ {t:"y = −x + 4. Berechne y für x = 3.",eq:[-1,4],a:1},
+ {t:"Bestimme die Nullstelle von y = 2x − 6.",eq:[2,-6],a:3,h:"0 = 2x − 6, also 2x = 6."},
+ {t:"Welche Gerade ist parallel zu y = 3x + 1?",o:["y = 3x − 5","y = −3x + 1","y = x + 3"],a:0,h:"Parallele Geraden haben die gleiche Steigung."},
+ {t:"Die beiden Punkte liegen auf einer Geraden. Wie groß ist m?",tb:[["x","0","1"],["y","−2","1"]],a:3,h:"m = (1 − (−2)) ÷ (1 − 0)"},
+ {t:"Welche Gleichung hat m = −2 und b = 5?",o:["y = 5x − 2","y = −2x + 5","y = 2x − 5"],a:1},
+ {t:"Fülle die Wertetabelle aus: y = 0,5x + 2",fill:{x:[-2,0,2,4],m:0.5,b:2},h:"Rechne 0,5 · x und addiere dann 2."}]}
+];
+var done={},cur=0;
+function el(h){var d=document.createElement("div");d.innerHTML=h;return d.firstChild}
+function score(){var n=0,t=0;T.forEach(function(x){x.q.forEach(function(_,i){t++;if(done[x.id+i])n++})});document.getElementById("score").textContent="Richtig: "+n+" von "+t}
+function plot(c,mode){
+ var m=mode==3?1:1,b=0;
+ var w=el('<div class="card"><h2>Ausprobieren</h2><svg viewBox="-6 -6 12 12"></svg><div class="vt" id="lf" style="text-align:center;margin:4px 0"></div><div id="pt"></div><div class="sl"><span id="lm"></span><input id="sm" type="range" min="-4" max="4" step="0.5" value="1"></div>'+(mode==2?'':'<div class="sl"><span id="lb"></span><input id="sb" type="range" min="-5" max="5" step="1" value="0"></div>')+'</div>');
+ c.appendChild(w);
+ var svg=w.querySelector("svg"),sm=w.querySelector("#sm"),sb=w.querySelector("#sb");
+ function d(){
+  m=+sm.value;b=sb?+sb.value:0;
+  var s='';for(var i=-5;i<=5;i++)s+='<line x1="'+i+'" y1="-6" x2="'+i+'" y2="6" stroke="currentColor" opacity=".12" stroke-width=".04"/><line x1="-6" y1="'+i+'" x2="6" y2="'+i+'" stroke="currentColor" opacity=".12" stroke-width=".04"/>';
+  s+='<line x1="-6" y1="0" x2="6" y2="0" stroke="currentColor" stroke-width=".08"/><line x1="0" y1="-6" x2="0" y2="6" stroke="currentColor" stroke-width=".08"/>';
+  var y1=-(m*-6+b),y2=-(m*6+b);
+  s+='<line x1="-6" y1="'+y1+'" x2="6" y2="'+y2+'" stroke="#2f6df6" stroke-width=".18"/><circle cx="0" cy="'+(-b)+'" r=".25" fill="#e62117"/>';
+  var nd=dia({line:[m,b],r:[-6,6,-6,6],pt:[[0,b]]});svg.replaceWith(nd);svg=nd;
+  w.querySelector("#lm").textContent="m = "+m;
+  var pt=w.querySelector("#pt"),xs=[-3,-2,-1,0,1,2,3];pt.innerHTML="";pt.appendChild(tbl([["x"].concat(xs),["y"].concat(xs.map(function(x){return fmt(m*x+b)}))]));
+  w.querySelector("#lf").textContent="y = "+eqs(m,b);
+  if(sb)w.querySelector("#lb").textContent="b = "+b;
+ }
+ sm.oninput=d;if(sb)sb.oninput=d;d();
+}
+function fillq(box,fb,q,res){
+ var f=q.fill,ins=[],cur=null,t=document.createElement("table");t.className="tb";
+ var r1=t.insertRow(),r2=t.insertRow(),a=r1.insertCell(),b=r2.insertCell();
+ a.textContent="x";a.className="th";b.textContent="y";b.className="th";
+ f.x.forEach(function(x){r1.insertCell().textContent=x;var c=r2.insertCell(),i=document.createElement("input");i.type="text";i.style.width="100%";i.style.minWidth="52px";i.style.textAlign="center";i.setAttribute("aria-label","y für x = "+x);i.onfocus=function(){cur=i};c.appendChild(i);ins.push(i)});
+ var w=document.createElement("div");w.className="tw";w.appendChild(t);box.insertBefore(w,fb);
+ var bt=document.createElement("button");bt.className="chk";bt.textContent="Prüfen";bt.style.marginLeft="0";
+ var sg=document.createElement("button");sg.className="chk";sg.textContent="±";sg.title="Minus ein/aus";
+ sg.onclick=function(){if(!cur)return;var v=cur.value.trim();cur.value=v.charAt(0)=="-"?v.slice(1):"-"+v;cur.focus()};
+ bt.onclick=function(){var all=true;ins.forEach(function(i,k){var v=parseFloat(i.value.replace(",",".").replace("−","-")),ok=Math.abs(v-(f.m*f.x[k]+f.b))<1e-6;i.style.borderColor=ok?"var(--ok)":"var(--no)";if(!ok)all=false});res(all)};
+ box.insertBefore(bt,fb);box.insertBefore(sg,fb);
+}
+function dia(d){var W=320,H=200,L=44,B=36,T=14,R=14,mx=0,my=0;d.p.forEach(function(p){mx=Math.max(mx,p[0]);my=Math.max(my,p[1])});mx+=1;my+=1;
+ var X=function(v){return L+v*(W-L-R)/mx},Y=function(v){return H-B-v*(H-B-T)/my},s='';
+ for(var j=1;j<my;j++)s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(j)+'" y2="'+Y(j)+'" stroke="currentColor" opacity=".15"/><text x="'+(L-8)+'" y="'+(Y(j)+4)+'" text-anchor="end" font-size="11" fill="currentColor">'+j+'</text>';
+ for(var i=1;i<mx;i++)s+='<line x1="'+X(i)+'" x2="'+X(i)+'" y1="'+(H-B)+'" y2="'+(H-B+4)+'" stroke="currentColor"/><text x="'+X(i)+'" y="'+(H-B+16)+'" text-anchor="middle" font-size="11" fill="currentColor">'+i+'</text>';
+ s+='<line x1="'+L+'" y1="'+(H-B)+'" x2="'+(W-R)+'" y2="'+(H-B)+'" stroke="currentColor" stroke-width="1.5"/><line x1="'+L+'" y1="'+(H-B)+'" x2="'+L+'" y2="'+T+'" stroke="currentColor" stroke-width="1.5"/>';
+ d.p.forEach(function(p){var x=X(p[0]),y=Y(p[1]);s+='<path d="M'+(x-5)+' '+(y-5)+'L'+(x+5)+' '+(y+5)+'M'+(x+5)+' '+(y-5)+'L'+(x-5)+' '+(y+5)+'" stroke="#2f6df6" stroke-width="2.2"/>'});
+ s+='<text x="'+(W-R)+'" y="'+(H-6)+'" text-anchor="end" font-size="11" fill="currentColor">'+d.xl+'</text><text x="'+(L+6)+'" y="'+(T+8)+'" font-size="11" fill="currentColor">'+d.yl+'</text>';
+ var w=document.createElement("div");w.innerHTML='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Punktdiagramm">'+s+'</svg>';return w.firstChild}
+function dia(d){var W=320,H=240,P=24,xs=[],ys=[],E=function(a){return a.length?a:[0]};
+(d.p||[]).forEach(function(p){xs.push(p[0]);ys.push(p[1])});
+if(d.line)[-3,3].forEach(function(x){xs.push(x);ys.push(d.line[0]*x+d.line[1])});
+var x0=Math.min(0,Math.floor(Math.min.apply(0,E(xs)))),x1=Math.max(0,Math.ceil(Math.max.apply(0,E(xs))))+1,y0=Math.min(0,Math.floor(Math.min.apply(0,E(ys)))),y1=Math.max(0,Math.ceil(Math.max.apply(0,E(ys))))+1;
+if(x0<0)x0--;if(y0<0)y0--;
+if(d.r){x0=d.r[0];x1=d.r[1];y0=d.r[2];y1=d.r[3]}
+var sx=(W-2*P)/(x1-x0),sy=(H-2*P)/(y1-y0),X=function(v){return P+(v-x0)*sx},Y=function(v){return H-P-(v-y0)*sy},st=function(a,b){for(var q=0,n=[1,2,5,10,20,50,100];q<6;q++)if((b-a)/n[q]<=8)return n[q];return 100},C=`stroke='currentColor'`,s=`<clipPath id='cp'><rect x='${P}' y='${P}' width='${W-2*P}' height='${H-2*P}'/></clipPath>`,L=function(a,b,c,e,x){return `<line x1='${a}' y1='${b}' x2='${c}' y2='${e}' ${x}/>`},T=function(x,y,t,a){return `<text x='${x}' y='${y}' text-anchor='${a}' font-size='11' fill='currentColor'>${t}</text>`},i,k=st(x0,x1),m=st(y0,y1);
+for(i=Math.ceil(x0/k)*k;i<=x1;i+=k){s+=L(X(i),P,X(i),H-P,C+` opacity='.15'`);if(i)s+=T(X(i),Y(0)+14,i,'middle')}
+for(i=Math.ceil(y0/m)*m;i<=y1;i+=m){s+=L(P,Y(i),W-P,Y(i),C+` opacity='.15'`);if(i)s+=T(X(0)-6,Y(i)+4,i,'end')}
+s+=L(P,Y(0),W-P+8,Y(0),C+` stroke-width='1.6'`)+L(X(0),H-P,X(0),P-8,C+` stroke-width='1.6'`);
+s+=`<polygon points='${W-P+10},${Y(0)} ${W-P+3},${Y(0)-4} ${W-P+3},${Y(0)+4}' fill='currentColor'/><polygon points='${X(0)},${P-10} ${X(0)-4},${P-3} ${X(0)+4},${P-3}' fill='currentColor'/>`;
+s+=T(W-4,Y(0)-6,d.xl||'x','end')+T(X(0)+8,12,d.yl||'y','start');
+if(d.line)s+=`<g clip-path='url(#cp)'>`+L(X(x0),Y(d.line[0]*x0+d.line[1]),X(x1),Y(d.line[0]*x1+d.line[1]),`stroke='#2f6df6' stroke-width='2.4'`)+`</g>`;
+(d.p||[]).forEach(function(p){var x=X(p[0]),y=Y(p[1]);s+=`<path d='M${x-5} ${y-5}L${x+5} ${y+5}M${x+5} ${y-5}L${x-5} ${y+5}' stroke='#2f6df6' stroke-width='2.2'/>`});
+(d.pt||[]).forEach(function(p){s+=`<circle cx='${X(p[0])}' cy='${Y(p[1])}' r='4.5' fill='#e62117'/>`});
+var w=document.createElement('div');w.innerHTML=`<svg viewBox='0 0 ${W} ${H}' role='img' aria-label='Koordinatensystem'>${s}</svg>`;return w.firstChild}
+var EX={fe:[`Beispiel: Kreuze bei x = 1 (y = 5), x = 2 (y = 6) und x = 3 (y = 6). Über jedem x steht nur ein Kreuz, also ist es eine Funktion. Gleiche Höhe ist erlaubt. Stehen über einem x zwei Kreuze, ist es keine Funktion.`,`Beispiel: f(x) = 2x + 5, gesucht ist f(3). Setze 3 für x ein: 2 · 3 + 5 = 11.`,`Beispiel: f(x) = 4x − 1, gesucht ist y zu x = −2. Einsetzen: 4 · (−2) − 1 = −9. Achte auf Minus mal Plus.`,`Beispiel: x: 0, 1, 2 und y: 3, 5, 7. Bei x = 0 ist y = 3, das ist die Zahl ohne x. Pro Schritt wächst y um 2, also y = 2x + 3.`,`Beispiel: f(x) = 3x + 1 und y = 10. Setze y ein: 10 = 3x + 1, dann 9 = 3x, also x = 3.`,`Beispiel: Person → Geburtsdatum ist eine Funktion, denn jede Person hat genau ein Geburtsdatum. Merke: Zu jedem x gehört genau ein y.`,`Beispiel: x: 1, 2, 3 und y: 4, 4, 5. In der oberen Zeile wiederholt sich nichts, also ist es eine Funktion. Stünde oben zweimal die 2 mit verschiedenen y-Werten, wäre es keine.`,`Beispiel: 2 Arbeiter brauchen 12 Tage, 4 Arbeiter 6 Tage. Doppelt so viele Arbeiter, halb so viele Tage heißt umgekehrt proportional. Arbeiter × Tage bleibt gleich (24).`,`Beispiel: 3 Arbeiter brauchen 8 Tage, also Arbeiter × Tage = 24. Für 6 Arbeiter: 24 ÷ 6 = 4 Tage.`,`Beispiel: Arbeiter × Tage = 24. Sollen es nur 3 Tage sein, braucht man 24 ÷ 3 = 8 Arbeiter.`,`Beispiel: f(x) = 3x + 1. Bei x = −1: 3 · (−1) + 1 = −2. Bei x = 0: y = 1. Bei x = 2: y = 7. Rechne jede Spalte einzeln.`,`Beispiel: f(x) = −2x + 1. Bei x = 3: −2 · 3 + 1 = −5. Bei x = −1: −2 · (−1) + 1 = 3.`,`Beispiel: Tag 1 → 2 °C, Tag 2 → 3 °C, Tag 3 → 3 °C. Jedem Tag gehört genau eine Temperatur, also ist es eine Funktion. Zwei Tage mit gleicher Temperatur sind kein Problem.`,`Beispiel: Tag → Temperatur ist eine Funktion. Dreht man um (Temperatur → Tag) und eine Temperatur kommt zweimal vor, hat sie zwei Tage. Dann ist es keine Funktion mehr.`,`Beispiel: Kreuze bei Tag 1 (2 °C) und Tag 2 (5 °C). Für den 2. Tag gehst du bei 2 nach oben bis zum Kreuz und liest links 5 ab.`],
+st:[`Beispiel: P(1|1) und Q(3|5). Höhenunterschied: 5 − 1 = 4. Schritt nach rechts: 3 − 1 = 2. Steigung: m = 4 ÷ 2 = 2.`,`Beispiel: P(0|6) und Q(2|2). Höhenunterschied: 2 − 6 = −4, Schritt nach rechts: 2. m = −4 ÷ 2 = −2. Fällt die Gerade, ist m negativ.`,`Beispiel: 4 Schritte nach rechts und 3 nach oben ergeben m = 3 ÷ 4 = 0,75. Immer: nach oben durch nach rechts.`,`Beispiel: Steigt eine Gerade nach rechts, ist m positiv. Fällt sie, ist m negativ. Verläuft sie waagerecht, gibt es keinen Höhenunterschied, also m = 0.`,`Beispiel: P(−1|2) und Q(3|10). Höhenunterschied: 8, Schritt nach rechts: 3 − (−1) = 4. m = 8 ÷ 4 = 2. Achte auf Minus minus.`,`Beispiel: Von (0|5) nach (2|1) geht es nach unten, m = (1 − 5) ÷ 2 = −2. Ein fallender Graph hat immer eine negative Steigung.`],
+pr:[`Beispiel: y = 5x ist proportional, y = 5x + 2 nicht. Bei proportionalen Funktionen steht nur m · x, ohne Zahl dazu.`,`Beispiel: 2 kg Birnen kosten 6 €, wie viel kosten 5 kg? 1 kg kostet 6 ÷ 2 = 3 €, also kosten 5 kg 5 · 3 = 15 €.`,`Beispiel: x = 5 und y = 20. Der Faktor ist m = y ÷ x = 20 ÷ 5 = 4.`,`Beispiel: y = 3x. Bei x = 0 ist y = 0. Darum geht der Graph proportionaler Funktionen immer durch den Ursprung (0|0).`,`Beispiel: y = 6x und x = 1,5. Einsetzen: 6 · 1,5 = 9.`,`Beispiel: x: 2, 4 und y: 6, 12. Teile y durch x: 6 ÷ 2 = 3 und 12 ÷ 4 = 3. Der Faktor ist gleich, also proportional. Kommt Verschiedenes heraus, ist es nicht proportional.`,`Beispiel: y = 2x. x = 3 ergibt y = 6, x = −1 ergibt y = −2, x = 0 ergibt y = 0.`],
+li:[`Beispiel: y = 3x + 4. Die Zahl ohne x ist b, hier 4. An dieser Stelle schneidet der Graph die y-Achse.`,`Beispiel: Gerade durch (0|3) mit m = 4. Der y-Wert bei x = 0 ist b = 3, die Steigung ist m = 4, also y = 4x + 3.`,`Beispiel: y = −2x + 5 bei x = 4. Einsetzen: −2 · 4 + 5 = −3.`,`Beispiel: y = 4x − 8. Nullstelle heißt y = 0: 0 = 4x − 8, also 4x = 8 und x = 2.`,`Beispiel: y = 2x + 3 und y = 2x − 7 haben beide m = 2, also sind sie parallel. Parallel heißt gleiche Steigung, b darf anders sein.`,`Beispiel: Durch (0|1) und (2|5): m = (5 − 1) ÷ (2 − 0) = 2. Immer y-Unterschied durch x-Unterschied.`,`Beispiel: m = 3 und b = −1 ergibt y = 3x − 1. Erst m vor das x, dann b dahinter mit Vorzeichen.`,`Beispiel: y = 2x + 1. x = 0 ergibt 1, x = 1 ergibt 3, x = 2 ergibt 5. Rechne erst m · x, dann + b.`]};
+EX={fe:[`So geht's: Schau auf die Kreuze. Steht über jedem x nur ein Kreuz, ist es eine Funktion. Hier haben x = 1, 2 und 3 je ein Kreuz, also Funktion. Zwei Kreuze auf gleicher Höhe sind okay. Zwei Kreuze übereinander (gleiches x) sind nicht okay.`,`So geht's: f(x) = 2x + 5, gesucht f(3). Das heißt: Nimm 3 statt x. 2 · 3 = 6, dann + 5 = 11.`,`So geht's: f(x) = 4x − 1 und x = −2. Nimm −2 statt x: 4 · (−2) = −8, dann − 1 = −9. Plus mal Minus gibt Minus.`,`So geht's: Schau auf x = 0. Dort ist y = 3. Das ist die Zahl hinten. Bei jedem Schritt wird y um 2 größer. Das ist die Zahl vor dem x. Also y = 2x + 3.`,`So geht's: f(x) = 3x + 1 und y = 10. Schreibe: 10 = 3x + 1. Nimm 1 weg: 9 = 3x. Teile durch 3: x = 3.`,`So geht's: Jede Person hat genau einen Geburtstag. Darum ist Person → Geburtstag eine Funktion. Merke: Zu jedem x gehört genau ein y.`,`So geht's: Schau nur auf die obere Zeile (x). Kommt dort keine Zahl doppelt vor, ist es eine Funktion. Hier: 1, 2, 3, also Funktion. Wäre oben zweimal die 2 mit verschiedenen y, dann nicht.`,`So geht's: Mehr Arbeiter, weniger Tage. 2 Arbeiter brauchen 12 Tage, 4 Arbeiter nur 6 Tage. Doppelt so viele Arbeiter, halb so viele Tage. Das heißt umgekehrt proportional. Tipp: Arbeiter mal Tage ist immer gleich (hier 24).`,`So geht's: 3 Arbeiter brauchen 8 Tage. 3 · 8 = 24. Für 6 Arbeiter: 24 ÷ 6 = 4 Tage.`,`So geht's: Arbeiter mal Tage ist 24. Es sollen 3 Tage sein: 24 ÷ 3 = 8 Arbeiter.`,`So geht's: f(x) = 3x + 1. Rechne jede Spalte einzeln. x = −1: 3 · (−1) + 1 = −2. x = 0: 3 · 0 + 1 = 1. x = 2: 3 · 2 + 1 = 7.`,`So geht's: f(x) = −2x + 1. x = 3: −2 · 3 + 1 = −5. x = −1: −2 · (−1) + 1 = 3. Minus mal Minus gibt Plus.`,`So geht's: Tag 1 → 2 °C, Tag 2 → 3 °C, Tag 3 → 3 °C. Jeder Tag hat genau eine Temperatur, also Funktion. Dass zwei Tage gleich warm sind, ist egal.`,`So geht's: Tag → Temperatur ist eine Funktion. Dreht man es um (Temperatur → Tag) und eine Temperatur kommt zweimal vor, hat sie zwei Tage. Dann ist es keine Funktion mehr.`,`So geht's: Such den Tag unten auf der x-Achse (hier Tag 2). Geh nach oben bis zum Kreuz. Geh dann nach links und lies ab: 5 °C.`],
+st:[`So geht's: Steigung m = nach oben ÷ nach rechts. P(1|1) und Q(3|5): Von P nach Q geht es 2 nach rechts (3 − 1) und 4 nach oben (5 − 1). m = 4 ÷ 2 = 2.`,`So geht's: P(0|6), Q(2|2). Nach rechts: 2. Nach oben: 2 − 6 = −4, also 4 nach unten. m = −4 ÷ 2 = −2. Geht die Gerade nach unten, ist m negativ.`,`So geht's: Zähle die Schritte: 4 nach rechts und 3 nach oben. m = oben ÷ rechts = 3 ÷ 4 = 0,75.`,`So geht's: Geht die Gerade nach oben, ist m positiv. Geht sie nach unten, ist m negativ. Ist sie waagerecht, geht sie nicht hoch und nicht runter, also m = 0.`,`So geht's: P(−1|2), Q(3|10). Nach oben: 10 − 2 = 8. Nach rechts: 3 − (−1) = 4 (Minus minus gibt Plus). m = 8 ÷ 4 = 2.`,`So geht's: Von (0|5) nach (2|1) geht es nach unten. Oben: 1 − 5 = −4, rechts: 2. m = −4 ÷ 2 = −2. Gerade fällt, also m negativ.`],
+pr:[`So geht's: Proportional heißt: nur m mal x, nichts dazu. y = 5x ist proportional. y = 5x + 2 nicht, wegen dem + 2.`,`So geht's: 2 kg kosten 6 €. Erst 1 kg: 6 ÷ 2 = 3 €. Dann mal 5: 5 · 3 = 15 €.`,`So geht's: m = y ÷ x. Hier: 20 ÷ 5 = 4. Bei jedem Schritt nach rechts geht die Gerade 4 hoch.`,`So geht's: Setze x = 0 ein: y = 3 · 0 = 0. Der Punkt (0|0) heißt Ursprung. Proportionale Geraden gehen immer dadurch.`,`So geht's: y = 6x und x = 1,5. Nimm 1,5 statt x: 6 · 1,5 = 9.`,`So geht's: Teile jedes y durch sein x. 6 ÷ 2 = 3 und 12 ÷ 4 = 3. Immer die gleiche Zahl, also proportional. Kommt Verschiedenes raus, ist es nicht proportional.`,`So geht's: y = 2x. Rechne jeden x-Wert mal 2: x = 3 gibt 6, x = −1 gibt −2, x = 0 gibt 0.`],
+li:[`So geht's: Bei y = 3x + 4 ist b die Zahl ohne x, also 4. Dort schneidet die Gerade die y-Achse.`,`So geht's: Die Gerade geht durch (0|3), also b = 3. m = 4 ist gegeben. Schreibe y = m · x + b, also y = 4x + 3.`,`So geht's: y = −2x + 5 und x = 4. Nimm 4 statt x: −2 · 4 = −8, dann + 5 = −3.`,`So geht's: Nullstelle heißt: y ist 0. Also 0 = 4x − 8. Rechne + 8: 8 = 4x. Teile durch 4: x = 2.`,`So geht's: Parallel heißt: gleiche Steigung m. y = 2x + 3 und y = 2x − 7 haben beide m = 2. Nur die Zahl hinten (b) ist anders. Also parallel.`,`So geht's: Durch (0|1) und (2|5). Nach oben: 5 − 1 = 4. Nach rechts: 2 − 0 = 2. m = 4 ÷ 2 = 2.`,`So geht's: m = 3 und b = −1. Schreibe m vor das x und b dahinter: y = 3x − 1.`,`So geht's: y = 2x + 1. Rechne erst 2 · x, dann + 1. x = 0 gibt 1, x = 1 gibt 3, x = 2 gibt 5.`]};
+var EXD={fe0:{p:[[1,5],[2,6],[3,6]],xl:'x',yl:'y'},fe3:{p:[[0,3],[1,5],[2,7]],line:[2,3]},fe12:{p:[[1,2],[2,3],[3,3]],xl:'Tag',yl:'°C'},fe14:{p:[[1,2],[2,5]],xl:'Tag',yl:'°C'},st0:{p:[[1,1],[3,5]],line:[2,-1]},st1:{p:[[0,6],[2,2]],line:[-2,6]},st2:{p:[[0,0],[4,3]],line:[0.75,0]},st3:{line:[0,2]},st4:{p:[[-1,2],[3,10]],line:[2,4]},st5:{p:[[0,5],[2,1]],line:[-2,5]},pr2:{p:[[5,20]],line:[4,0]},pr3:{line:[3,0],pt:[[0,0]]},li0:{line:[3,4],pt:[[0,4]]},li1:{line:[4,3],pt:[[0,3]]},li3:{line:[4,-8],pt:[[2,0]]},li5:{p:[[0,1],[2,5]],line:[2,1]},li6:{line:[3,-1],pt:[[0,-1]]}};
+function exel(id,i){var t=(EX[id]||[])[i];if(!t)return document.createDocumentFragment();var d=document.createElement('details');d.className='ex';d.open=true;var s=document.createElement('summary');s.textContent='Beispiel mit Erklärung';var p=document.createElement('div');p.textContent=t;d.appendChild(s);d.appendChild(p);var g=EXD[id+i];if(g)p.appendChild(dia(g));return d}
+function tdia(t){var p=[],f=function(v){return parseFloat(String(v).replace(',','.').replace('−','-'))};for(var j=1;j<t[0].length;j++){var a=f(t[0][j]),b=f(t[1][j]);if(!isNaN(a)&&!isNaN(b))p.push([a,b])}return p.length?dia({p:p,xl:t[0][0],yl:t[1][0]}):null}
+function fmt(v){return String(+v.toFixed(2)).replace(".",",")}
+function eqs(m,b){if(m==0)return fmt(b);var s=(m==1?"":m==-1?"−":fmt(m))+"x";if(b>0)s+=" + "+fmt(b);else if(b<0)s+=" − "+fmt(-b);return s}
+function eqt(e){var xs=[-2,-1,0,1,2];return tbl([["x"].concat(xs),["y"].concat(xs.map(function(x){return fmt(e[0]*x+e[1])}))])}
+function pm(i){var b=document.createElement("button");b.className="chk";b.textContent="±";b.title="Minus ein/aus";b.onclick=function(){var v=i.value.trim();i.value=v.charAt(0)=="-"?v.slice(1):"-"+v;i.focus()};return b}
+function tbl(r){var t=document.createElement("table");t.className="tb";r.forEach(function(row,ri){var tr=t.insertRow();row.forEach(function(x,ci){var c=tr.insertCell();c.textContent=x;if(ci==0)c.className="th";else if(ri>0){var n=parseFloat(String(x).replace(",",".").replace("−","-"));if(n>0)c.className="up";else if(n<0)c.className="dn"}})});var w=document.createElement("div");w.className="tw";w.appendChild(t);return w}
+function quiz(c,tp){
+ tp.q.forEach(function(q,i){
+  var k=tp.id+i,box=el('<div class="q"><p></p><div class="fb"></div></div>');box.insertBefore(exel(tp.id,i),box.firstChild);
+  box.querySelector("p").textContent=(i+1)+". "+q.t;
+  var fb=box.querySelector(".fb");if(q.eq)box.insertBefore(eqt(q.eq),fb);if(q.tb){box.insertBefore(tbl(q.tb),fb);if(!q.pts&&!q.ptss){var td=tdia(q.tb);if(td)box.insertBefore(td,fb)}}if(q.tbs)q.tbs.forEach(function(r){box.insertBefore(tbl(r),fb)});if(q.pts)box.insertBefore(dia(q.pts),fb);if(q.ptss)q.ptss.forEach(function(r){box.insertBefore(dia(r),fb)});if(q.fill){fillq(box,fb,q,res);c.appendChild(box);return}
+  function res(ok){fb.className="fb "+(ok?"ok":"no");fb.textContent=ok?"Richtig!":"Nicht ganz."+(q.h?" Tipp: "+q.h:" Versuch es nochmal.");if(ok){done[k]=1;score()}}
+  if(q.o){
+   var o=el('<div class="opts"></div>');
+   q.o.forEach(function(t,j){var b=document.createElement("button");b.textContent=t;b.onclick=function(){var ok=j==q.a;b.className=ok?"ok":"no";res(ok)};o.appendChild(b)});
+   box.insertBefore(o,fb);
+  }else{
+   var r=el('<div><input type="text" placeholder="Antwort"></div>'),inp=r.firstChild,bt=document.createElement("button");
+   bt.className="chk";bt.textContent="Prüfen";
+   bt.onclick=function(){var v=parseFloat(inp.value.replace(",",".").replace("−","-"));res(Math.abs(v-q.a)<1e-6)};
+   inp.onkeydown=function(e){if(e.key=="Enter")bt.onclick()};
+   r.appendChild(pm(inp));r.appendChild(bt);box.insertBefore(r,fb);
+  }
+  c.appendChild(box);
+ });
+}
+function show(i){
+ cur=i;var tp=T[i],v=document.getElementById("view");v.innerHTML="";
+ [].forEach.call(document.querySelectorAll("nav button"),function(b,j){b.className=j==i?"on":""});
+ var c=el('<div class="card"><h2></h2><p></p><a class="vid" target="_blank" rel="noopener">▶ Lehrer Schmidt: Videos zum Thema</a></div>');
+ c.querySelector("h2").textContent=tp.n;c.querySelector("p").textContent=tp.txt;
+ c.querySelector("a").href="https://www.youtube.com/results?search_query="+encodeURIComponent(tp.vid);
+ c.querySelector("a").textContent="▶ Mehr Lehrer-Schmidt-Videos suchen";
+ (tp.v||[]).forEach(function(x){var s=el('<div><a class="vc" target="_blank" rel="noopener"><span class="pl">▶</span><span class="vt"></span></a></div>');s.querySelector(".vt").textContent=x[0];s.querySelector(".vc").href="https://www.youtube.com/watch?v="+x[1];c.insertBefore(s,c.querySelector(".vid"))});
+ v.appendChild(c);
+ if(tp.plot)plot(v,tp.plot);
+ var qc=el('<div class="card"><h2>Aufgaben</h2></div>');quiz(qc,tp);v.appendChild(qc);
+}
+var nav=document.getElementById("nav");
+T.forEach(function(t,i){var b=document.createElement("button");b.textContent=t.n;b.onclick=function(){show(i)};nav.appendChild(b)});
+function test(){
+ var v=document.getElementById("view");v.innerHTML="";
+ [].forEach.call(document.querySelectorAll("nav button"),function(b,j){b.className=j==T.length?"on":""});
+ var rnd=function(){return Math.random()-.5},items=[];
+ T.forEach(function(tp){tp.q.filter(function(q){return !q.fill}).sort(rnd).slice(0,3).forEach(function(q){items.push({q:q,n:tp.n})})});
+ items.sort(rnd);
+ var c=el('<div class="card"><h2>Test: alle Themen</h2><p>12 gemischte Aufgaben. Die Auswertung kommt am Ende.</p></div>'),ch=[],inp=[];
+ items.forEach(function(it,i){
+  var q=it.q,box=el('<div class="q"><p></p></div>');if(q.eq)box.appendChild(eqt(q.eq));if(q.tb){box.appendChild(tbl(q.tb));if(!q.pts&&!q.ptss){var td=tdia(q.tb);if(td)box.appendChild(td)}}if(q.tbs)q.tbs.forEach(function(r){box.appendChild(tbl(r))});if(q.pts)box.appendChild(dia(q.pts));if(q.ptss)q.ptss.forEach(function(r){box.appendChild(dia(r))});
+  box.querySelector("p").textContent=(i+1)+". "+q.t;
+  if(q.o){var o=el('<div class="opts"></div>'),bs=[];
+   q.o.forEach(function(t,j){var b=document.createElement("button");b.textContent=t;b.onclick=function(){ch[i]=j;bs.forEach(function(x){x.className=""});b.className="sel"};bs.push(b);o.appendChild(b)});
+   box.appendChild(o);
+  }else{var t=document.createElement("input");t.type="text";t.placeholder="Antwort";inp[i]=t;box.appendChild(t);box.appendChild(pm(t))}
+  c.appendChild(box);
+ });
+ var go=document.createElement("button");go.className="chk";go.textContent="Auswerten";
+ var out=el('<div class="res"></div>');
+ go.onclick=function(){
+  var n=0,bad={};
+  items.forEach(function(it,i){var q=it.q,ok=q.o?ch[i]===q.a:(inp[i]&&Math.abs(parseFloat(inp[i].value.replace(",",".").replace("−","-"))-q.a)<1e-6);if(ok)n++;else bad[it.n]=1});
+  var p=n/items.length*100,note=p>=92?1:p>=81?2:p>=67?3:p>=50?4:p>=30?5:6,w=Object.keys(bad);
+  out.textContent=n+" von "+items.length+" richtig (Note "+note+")."+(w.length?" Wiederhole: "+w.join(", ")+".":" Stark, alles richtig!");
+  var nb=document.createElement("button");nb.className="chk";nb.textContent="Neuer Test";nb.onclick=test;out.appendChild(document.createElement("br"));out.appendChild(nb);
+ };
+ c.appendChild(go);c.appendChild(out);v.appendChild(c);window.scrollTo(0,0);
+}
+var tb=document.createElement("button");tb.textContent="Test (alle Themen)";tb.onclick=test;nav.appendChild(tb);
+score();show(0);
+</script>
+</body>
+</html>
